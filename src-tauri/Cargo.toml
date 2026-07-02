@@ -1,6 +1,6 @@
 [package]
 name = "credhub"
-version = "1.2.2"
+version = "1.2.3"
 description = "CredHub — Sistema de Gestão de Crédito Consignado"
 authors = ["CredHub"]
 edition = "2021"
