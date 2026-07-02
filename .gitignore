@@ -1,0 +1,38 @@
+# Dependências
+node_modules/
+dist/
+dist-ssr/
+
+# Build do Rust/Tauri (pesado — não vai pro Git)
+src-tauri/target/
+
+# Chaves de assinatura (NUNCA subir pro Git!)
+*.key
+*.key.pub
+.tauri/
+
+# Backup gerado pelo build personalizado
+src-tauri/icons-backup-original/
+src-tauri/tauri.conf.json.original
+
+# Logs e temporários
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+Thumbs.db
+
+# Ambiente
+.env
+.env.local
+.env.*.local
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln

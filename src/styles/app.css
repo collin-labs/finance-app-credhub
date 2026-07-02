@@ -1,0 +1,190 @@
+@import '@fontsource-variable/plus-jakarta-sans';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans Variable', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow: hidden;
+    user-select: none;
+  }
+
+  input, textarea, select {
+    user-select: text;
+  }
+
+  /* Scrollbar padrão CredHub */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.4);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(148, 163, 184, 0.6);
+  }
+}
+
+@layer components {
+  .input-field {
+    @apply w-full px-3 py-2 bg-white border border-surface-200 rounded-lg text-sm
+           text-surface-900 placeholder:text-surface-400
+           focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-500
+           transition-all duration-150;
+  }
+
+  .btn-primary {
+    @apply px-4 py-2 bg-brand-600 text-white rounded-lg text-sm font-medium
+           hover:bg-brand-700 active:bg-brand-800
+           focus:outline-none focus:ring-2 focus:ring-brand-500/30
+           transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2 bg-surface-100 text-surface-700 rounded-lg text-sm font-medium
+           hover:bg-surface-200 active:bg-surface-300
+           focus:outline-none focus:ring-2 focus:ring-surface-300
+           transition-all duration-150;
+  }
+
+  .btn-danger {
+    @apply px-4 py-2 bg-danger-500 text-white rounded-lg text-sm font-medium
+           hover:bg-danger-600 active:bg-red-700
+           transition-all duration-150;
+  }
+
+  .card {
+    @apply bg-white rounded-xl border border-surface-200 shadow-sm;
+  }
+
+  .stat-card {
+    @apply card p-5 flex flex-col gap-1;
+  }
+
+  .sidebar-item {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium
+           text-surface-500 hover:text-surface-900 hover:bg-surface-100
+           transition-all duration-150 cursor-pointer;
+  }
+
+  .sidebar-item.active {
+    @apply text-brand-700 bg-brand-50 hover:bg-brand-50;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-2 py-0.5 rounded-full text-2xs font-semibold uppercase tracking-wide;
+  }
+
+  .badge-digitado     { @apply bg-surface-100 text-surface-600; }
+  .badge-pendente     { @apply bg-warning-500/10 text-warning-600; }
+  .badge-em_analise   { @apply bg-info-500/10 text-info-600; }
+  .badge-aprovado     { @apply bg-brand-100 text-brand-700; }
+  .badge-aguardando_anuencia { @apply bg-purple-100 text-purple-700; }
+  .badge-averbado     { @apply bg-emerald-100 text-emerald-700; }
+  .badge-pago         { @apply bg-success-500/10 text-success-600; }
+  .badge-rejeitado    { @apply bg-danger-500/10 text-danger-500; }
+  .badge-cancelado    { @apply bg-surface-100 text-surface-500; }
+  .badge-expirado     { @apply bg-surface-100 text-surface-400; }
+}
+
+/* ============================================
+   MANUAL — estilos do markdown renderizado
+   ============================================ */
+.manual-body h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e2e8f0;
+}
+.manual-body h2 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #2563eb;
+  margin: 1.5rem 0 0.75rem;
+}
+.manual-body h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #334155;
+  margin: 1.25rem 0 0.5rem;
+}
+.manual-body p {
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: #475569;
+  margin: 0.5rem 0;
+}
+.manual-body ul, .manual-body ol {
+  margin: 0.5rem 0 0.75rem;
+  padding-left: 1.5rem;
+}
+.manual-body li {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #475569;
+  margin: 0.25rem 0;
+}
+.manual-body ul li { list-style: disc; }
+.manual-body ol li { list-style: decimal; }
+.manual-body strong { color: #1e293b; font-weight: 600; }
+.manual-body code {
+  background: #f1f5f9;
+  padding: 0.1rem 0.35rem;
+  border-radius: 0.25rem;
+  font-size: 0.8rem;
+  font-family: ui-monospace, monospace;
+  color: #2563eb;
+}
+.manual-body blockquote {
+  border-left: 3px solid #2563eb;
+  background: #eff6ff;
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+.manual-body blockquote p { color: #1e40af; margin: 0; }
+.manual-body a { color: #2563eb; text-decoration: underline; }
+.manual-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.8rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px #e2e8f0;
+}
+.manual-body th, .manual-body td {
+  border: 1px solid #e2e8f0;
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+.manual-body th { background: #f1f5f9; font-weight: 600; color: #334155; }
+.manual-body tbody tr:nth-child(even) { background: #f8fafc; }
+.manual-body tbody tr:hover { background: #eff6ff; }
+
+/* Impressão */
+@media print {
+  body * { visibility: hidden; }
+  #manual-print-content, #manual-print-content * { visibility: visible; }
+  #manual-print-content {
+    position: absolute; left: 0; top: 0; width: 100%;
+    border: none; box-shadow: none; padding: 0;
+  }
+}
