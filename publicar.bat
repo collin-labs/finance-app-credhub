@@ -56,14 +56,14 @@ if /i not "!CONFIRMA!"=="S" (
 echo.
 echo [1/5] Atualizando numero da versao nos arquivos...
 
-REM --- Atualiza tauri.conf.json ---
-powershell -NoProfile -Command "$c = Get-Content 'src-tauri\tauri.conf.json' -Raw | ConvertFrom-Json; $c.version = '!NOVA_VERSAO!'; $c | ConvertTo-Json -Depth 20 | Set-Content 'src-tauri\tauri.conf.json' -Encoding UTF8"
+REM --- Atualiza tauri.conf.json (sem BOM) ---
+powershell -NoProfile -Command "$u = New-Object System.Text.UTF8Encoding($false); $p = (Resolve-Path 'src-tauri\tauri.conf.json').Path; $c = Get-Content $p -Raw | ConvertFrom-Json; $c.version = '!NOVA_VERSAO!'; [System.IO.File]::WriteAllText($p, ($c | ConvertTo-Json -Depth 20), $u)"
 
-REM --- Atualiza package.json ---
-powershell -NoProfile -Command "$c = Get-Content 'package.json' -Raw | ConvertFrom-Json; $c.version = '!NOVA_VERSAO!'; $c | ConvertTo-Json -Depth 20 | Set-Content 'package.json' -Encoding UTF8"
+REM --- Atualiza package.json (sem BOM) ---
+powershell -NoProfile -Command "$u = New-Object System.Text.UTF8Encoding($false); $p = (Resolve-Path 'package.json').Path; $c = Get-Content $p -Raw | ConvertFrom-Json; $c.version = '!NOVA_VERSAO!'; [System.IO.File]::WriteAllText($p, ($c | ConvertTo-Json -Depth 20), $u)"
 
-REM --- Atualiza Cargo.toml ---
-powershell -NoProfile -Command "(Get-Content 'src-tauri\Cargo.toml') -replace '^version = \".*\"', 'version = \"!NOVA_VERSAO!\"' | Set-Content 'src-tauri\Cargo.toml' -Encoding UTF8"
+REM --- Atualiza Cargo.toml (sem BOM) ---
+powershell -NoProfile -Command "$u = New-Object System.Text.UTF8Encoding($false); $p = (Resolve-Path 'src-tauri\Cargo.toml').Path; $c = (Get-Content $p -Raw) -replace '(?m)^version = \".*\"', 'version = \"!NOVA_VERSAO!\"'; [System.IO.File]::WriteAllText($p, $c, $u)"
 
 echo       OK
 echo.

@@ -1,7 +1,7 @@
-﻿{
+{
     "$schema":  "https://raw.githubusercontent.com/tauri-apps/tauri/dev/crates/tauri-cli/schema.json",
     "productName":  "CredHub",
-    "version":  "1.2.0",
+    "version":  "1.2.1",
     "identifier":  "com.credhub.app",
     "build":  {
                   "beforeDevCommand":  "npm run dev",
@@ -13,7 +13,7 @@
                 "withGlobalTauri":  true,
                 "windows":  [
                                 {
-                                    "title":  "CredHub â€” GestÃ£o de CrÃ©dito",
+                                    "title":  "CredHub Ã¢â‚¬â€ GestÃƒÂ£o de CrÃƒÂ©dito",
                                     "width":  1400,
                                     "height":  850,
                                     "minWidth":  1100,
