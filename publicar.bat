@@ -62,8 +62,8 @@ powershell -NoProfile -Command "$u = New-Object System.Text.UTF8Encoding($false)
 REM --- Atualiza package.json (sem BOM) ---
 powershell -NoProfile -Command "$u = New-Object System.Text.UTF8Encoding($false); $p = (Resolve-Path 'package.json').Path; $c = Get-Content $p -Raw | ConvertFrom-Json; $c.version = '!NOVA_VERSAO!'; [System.IO.File]::WriteAllText($p, ($c | ConvertTo-Json -Depth 20), $u)"
 
-REM --- Atualiza Cargo.toml (sem BOM) ---
-powershell -NoProfile -Command "$u = New-Object System.Text.UTF8Encoding($false); $p = (Resolve-Path 'src-tauri\Cargo.toml').Path; $c = (Get-Content $p -Raw) -replace '(?m)^version = \".*\"', 'version = \"!NOVA_VERSAO!\"'; [System.IO.File]::WriteAllText($p, $c, $u)"
+REM --- Atualiza Cargo.toml (sem BOM, so a versao do [package]) ---
+powershell -NoProfile -Command "$u = New-Object System.Text.UTF8Encoding($false); $p = (Resolve-Path 'src-tauri\Cargo.toml').Path; $linhas = [System.IO.File]::ReadAllLines($p); $noPacote = $false; for ($i=0; $i -lt $linhas.Count; $i++) { if ($linhas[$i] -match '^\[package\]') { $noPacote = $true; continue }; if ($linhas[$i] -match '^\[') { $noPacote = $false }; if ($noPacote -and $linhas[$i] -match '^version\s*=') { $linhas[$i] = 'version = \"!NOVA_VERSAO!\"' } }; [System.IO.File]::WriteAllLines($p, $linhas, $u)"
 
 echo       OK
 echo.
